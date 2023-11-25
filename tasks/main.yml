@@ -1,9 +1,23 @@
 ---
 
-- name: Example task to deploy a template
-  ansible.builtin.template:
-    src: 'potos.example.j2'
-    dest: '/potos.example'
+- name: configure mimeapps Default Applications
+  community.general.ini_file:
+    path: /etc/xdg/mimeapps.list
     owner: root
     group: root
-    mode: '0755'
+    mode: '0644'
+    section: 'Default Applications'
+    option: '{{ item.mimetype }}'
+    value: '{{ item.desktop }}'
+  loop: potos_mimeapps.default_applications
+
+- name: configure mimeapps Added Associations
+  community.general.ini_file:
+    path: /etc/xdg/mimeapps.list
+    owner: root
+    group: root
+    mode: '0644'
+    section: 'Added Associations'
+    option: '{{ item.mimetype }}'
+    value: '{{ item.desktop }};'
+  loop: potos_mimeapps.added_associations
