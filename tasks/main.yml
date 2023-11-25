@@ -9,7 +9,8 @@
     section: 'Default Applications'
     option: '{{ item.mimetype }}'
     value: '{{ item.desktop }}'
-  loop: potos_mimeapps.default_applications
+    no_extra_spaces: true
+  loop: '{{ potos_mimeapps.default_applications }}'
 
 - name: configure mimeapps Added Associations
   community.general.ini_file:
@@ -20,4 +21,5 @@
     section: 'Added Associations'
     option: '{{ item.mimetype }}'
     value: '{{ item.desktop }};'
-  loop: potos_mimeapps.added_associations
+    no_extra_spaces: true
+  loop: '{{ potos_mimeapps.added_associations }}'
