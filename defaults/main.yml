@@ -1,7 +1,17 @@
 ---
 
-# Example variable
-potos_template_example_var: 'hello world!'
+# mimetype / desktop associations, for two sections in mimeapps.list
+potos_mimeapps:
+  default_applications:
+    - mimetype: video/mp4
+      desktop: vlc.desktop
+    - mimetype: x-scheme-handler/mailto
+      desktop: claws-mail.desktop
+  added_associations:
+    - mimetype: video/mp4
+      desktop: vlc.desktop
+    - mimetype: video/webm
+      desktop: vlc.desktop
+    - mimetype: x-scheme-handler/mailto
+      desktop: claws-mail.desktop
 
-# List of items used for action xyz
-potos_template_example_list: []

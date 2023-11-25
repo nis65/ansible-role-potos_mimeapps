@@ -1,13 +1,14 @@
 
-# Ansible Role - potos\_template
+# Ansible Role - potos\_mimeapps
 
-Role to use as template for new roles of Potos Linux Clients.
-
-[![Test](https://github.com/projectpotos/ansible-role-potos_template/actions/workflows/test.yml/badge.svg)](https://github.com/projectpotos/ansible-role-potos_template/actions/workflows/test.yml)
+This role is used to configure the default apps to be called e.g. from
+a browser for a `mailto` link. It translates the settings defined
+in the role variable into `/etc/xdg/mimeapps.list`. See below for
+the example default settings of that variable.
 
 ## Example Playbook
 
-As this role is tested via Molecule one can use [that
+As this role is **not yet** tested via Molecule one can use [that
 playbook](./molecule/default/converge.yml) as a starting point:
 
 ```yaml
@@ -24,17 +25,25 @@ playbook](./molecule/default/converge.yml) as a starting point:
 
 ## Role Variables
 
-The default variables are defined in [defaults/main.yml](./defaults/main.yml):
+The default variable is defined in [defaults/main.yml](./defaults/main.yml):
 
 ```yaml
 ---
 
-# Example variable
-potos_template_example_var: 'hello world!'
-
-# List of items used for action xyz
-potos_template_example_list: []
-
+# mimetype / desktop associations, for two sections in mimeapps.list
+potos_mimeapps:
+  default_applications:
+    - mimetype: video/mp4
+      desktop: vlc.desktop
+    - mimetype: x-scheme-handler/mailto
+      desktop: claws-mail.desktop
+  added_associations:
+    - mimetype: video/mp4
+      desktop: vlc.desktop
+    - mimetype: video/webm
+      desktop: vlc.desktop
+    - mimetype: x-scheme-handler/mailto
+      desktop: claws-mail.desktop
 ```
 
 Another option is to use `ansible-doc` to read the argument specification:
